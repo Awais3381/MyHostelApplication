@@ -26,10 +26,12 @@ Future<void> main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   initScreen = prefs.getInt("initScreen");
   await prefs.setInt("initScreen", 1);
+  //Initialize firebase
   await Firebase.initializeApp();
 
   runApp(
-    MultiProvider(
+    //Initialize provider
+  MultiProvider(
       providers: [
         StreamProvider.value(
           value: ServiceFirestoreService().getService(),
@@ -91,6 +93,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Brazila",
       ),
       debugShowCheckedModeBanner: false,
+      //Initialize routes
       onGenerateRoute: Routes.generateRoute,
     );
   }
